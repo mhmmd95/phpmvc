@@ -1,0 +1,35 @@
+body{
+    background: lightblue;
+}
+
+#navbar{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+
+   
+}
+
+.nav-list-item{
+    display: inline;
+    text-align: center;
+    border: 1px solid white;
+    padding: 5px;
+    border-radius: 3px;
+    
+}
+
+.nav-list-item:hover{
+    background-color: white;
+    color: black;
+}
+
+.right-align{
+    float: right;
+}
+
+.left-align{
+    float: left;
+}
