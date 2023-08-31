@@ -34,7 +34,7 @@ The admin can search in the tickets and sort them using date(newest to oldest) o
 
 ## How to start the application
 
-- php verion 7 or higher
+- php verion 8.2 or higher
 - compsoer for package management
 - clone the respository
 - composer install for the phpmailer/phpmailer package
