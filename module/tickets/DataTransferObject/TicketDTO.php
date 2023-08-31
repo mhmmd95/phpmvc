@@ -38,7 +38,7 @@ readonly class TicketDTO {
     private function sanitizeInputs(array $params) {
         foreach($params as $param) {
             if(strlen($param) === 0) {
-                throw new Exception('inputs should satisfy the requirements!!');
+                throw new Exception('all inputs are required, except the attachment!!');
             }
         }
 
