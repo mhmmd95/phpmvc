@@ -8,13 +8,13 @@ class UsersController
 {
     public function index()
     {
-        $users = App::get('database')->selectAll('users');
+        $users = App::get('database')->table('users')->all();
         return view('users', ['users' => $users]);
     }
 
     public function store()
     {
-        App::get('database')->insert('users', [
+        App::get('database')->table('users')->insert([
             'name' => $_POST['name']
         ]);
 

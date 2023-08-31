@@ -1,13 +1,10 @@
-<nav>
+<nav class="max-w-2xl mx-auto mt-3">
 
-    <ul id="navbar">
-        <li class="nav-list-item left-align"><a href="/">Home</a></li>
-        <li class="nav-list-item left-align"><a href="/about">About</a></li>
-        <li class="nav-list-item left-align"><a href="/users">Users</a></li>
-        <li class="nav-list-item right-align"><a href="/contact">Contact</a></li>
+    <ul id="navbar" class="max-w-sm flex gap-x-5">
+        <li><a class="text-blue-400 hover:text-gray-600" href="/">Home</a></li>
+        <li><a class="text-blue-400 hover:text-gray-600" href="/users">Users</a></li>
     </ul>
 
 </nav>
 
-<br> <br>
-<hr> 
+<main class="max-w-2xl mx-auto bg-gradient-to-t from-slate-400 min-h-fit p-2">
