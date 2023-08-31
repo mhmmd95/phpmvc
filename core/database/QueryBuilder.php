@@ -22,6 +22,21 @@ class QueryBuilder
         return $this;
     }
 
+    public function whereAdmin(string $column, string $value)
+    {
+        $column = htmlspecialchars($column);
+        $value =  htmlspecialchars($value);
+
+        $sql = $sql = "SELECT * FROM {$this->tablename} WHERE " . $column . ' = :value AND admin = 1';
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':value', $value);
+
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_CLASS);
+    }
+
     public function all()
     {
         $statement = $this->pdo->prepare("SELECT * FROM {$this->tablename}");
@@ -46,7 +61,7 @@ class QueryBuilder
 
             $statement->execute($parameters);
         } catch (\Exception $e) {
-            throw new Exception("There was an error");
+            die($e->getMessage());
         }
     }
 }
