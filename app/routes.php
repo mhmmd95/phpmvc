@@ -1,6 +1,9 @@
 <?php
 
-$router->get('', 'PagesController@home');
+// $router->get('public/style.css', 'PagesController@style');
+$router->get('', 'TicketController@index');
+$router->post('', 'TicketController@store');
+
 $router->get('about', 'PagesController@about');
 $router->get('contact', 'PagesController@contact');
 

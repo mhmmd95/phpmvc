@@ -8,7 +8,6 @@ use App\Core \{
 };
 
 try{
-
     Router::load('app/routes.php')->direct(Request::uri(), Request::method());
 }catch(\Exception $e) {
     echo $e;
