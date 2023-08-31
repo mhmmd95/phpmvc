@@ -2,6 +2,7 @@
 
 namespace App\Core;
 
+use App\Core\Database\QueryBuilder;
 use Exception;
 
 class App
@@ -15,6 +16,10 @@ class App
         static::$registry[$key] = $value;
     }
 
+    /**
+     * resolve a dependency from the container
+     * @return QueryBuilder
+     */
     public static function get($key)
 
     {

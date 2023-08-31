@@ -1,12 +1,14 @@
 <?php
 namespace App\Core\Database;
 
+use Exception;
 use PDO;
 
 class QueryBuilder
 {
 
     protected $pdo;
+    protected $tablename;
 
     public function __construct(PDO $pdo)
     {
@@ -15,21 +17,26 @@ class QueryBuilder
     }
 
 
-    public function selectAll($table)
+    public function table(string $name): self {
+        $this->tablename = $name;
+        return $this;
+    }
+
+    public function all()
     {
-        $statement = $this->pdo->prepare("SELECT * FROM {$table}");
+        $statement = $this->pdo->prepare("SELECT * FROM {$this->tablename}");
 
         $statement->execute();
 
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }
 
-    public function insert($table, $parameters)
+    public function insert($parameters)
     {
 
         $sql = sprintf(
             'insert into %s (%s) values (%s)',
-            $table,
+            $this->tablename,
             implode(',', array_keys($parameters)),
             ':' . implode(', :', array_keys($parameters))
         );
@@ -39,7 +46,7 @@ class QueryBuilder
 
             $statement->execute($parameters);
         } catch (\Exception $e) {
-            die("WHOA PARTNER! Something didn't pan out!");
+            throw new Exception("There was an error");
         }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Core\Database;
 
+use Exception;
 use PDO;
 use PDOException;
 
@@ -18,7 +19,7 @@ class Connection
                 $config['options']
             );
         } catch (PDOException $e) {
-            die("Connection error:" . $e->getMessage());
+            throw new Exception("Connection error:" . $e->getMessage());
         }
     }
 }
