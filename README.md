@@ -39,5 +39,7 @@ The admin can search in the tickets and sort them using date(newest to oldest) o
 - clone the respository
 - composer install for the phpmailer/phpmailer package
 - composer dump-autoload to make use of the composer autoload
+- edit the /config.php to suit your database configuation(table-name, username, connection, password)
+- import the ./ticketing.sql to your newly created database to migrate the needed tables
 - npm install for tailwindcss
 - create a mailtrap account and use the username and password to make use of the PHPMailer to send emails between the users in the .env.php file
