@@ -13,6 +13,7 @@ The admin can search in the tickets and sort them using date(newest to oldest) o
 ## what is done as code structure
 
 - MVC pattern to separate the code into three layers: model (database concerns), view (the presentation layer), and controller (the link between the two previous layers).
+- The routing system now has the dynamic routing feature.
 - Dependency injection pattern to map a key-value pair within a container.
 - Flexible routes file that has all the allowed routes for the project.
 - QueryBuilder to easily interact with the database using PHP PDO.
@@ -27,7 +28,6 @@ The admin can search in the tickets and sort them using date(newest to oldest) o
 
 ## what could be done next
 
-- The routes need to be able to make use of dynamic routing.
 - A registration system with session management to track the user on the system.
 - Continue to build the send email functionality and make use of the strategy pattern in order to make it easy in the future to substitute the email system with an SMS system.
 - The tickets on the admin panel should be paginated to easily search for a ticket and edit it.

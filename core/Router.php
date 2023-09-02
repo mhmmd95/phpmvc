@@ -19,9 +19,9 @@ class Router
     {
 
         $router = new static;
-        
+
         require $file;
-        
+
         return $router;
     }
 
@@ -40,21 +40,48 @@ class Router
         $this->routes['POST'][$uri] = $controller;
     }
 
+    private function compare_urls(string $input_string, array $urls) :false|array
+    {
+        foreach (array_keys($urls) as $url) {
 
+            $inputStrArray = explode('/', $input_string);
+            $urlArray = explode('/', $url);
+            
+
+            $dynamicParams = [];
+
+            if (count($inputStrArray) === count($urlArray)) {
+                for ($i = 0; $i < count($urlArray); ++$i) {
+                    if (preg_match('/\{(.*?)\}/', $urlArray[$i], $matches) > 0) {
+                        $dynamicParams[$matches[1]] = $inputStrArray[$i];
+                        $urlArray[$i] = $inputStrArray[$i];
+                        continue;
+                    }
+                }
+
+                if (implode('/', $urlArray) == $input_string) {
+                    return [$url, $dynamicParams];
+                }
+            }
+        }
+        return false;
+    }
 
     public function direct($uri, $requestType)
     {
-        if (array_key_exists($uri, $this->routes[$requestType])) {
+        [$uri, $dynamicParams] = $this->compare_urls($uri, $this->routes[$requestType]);
+
+        if(is_array($dynamicParams)) {
 
             return $this->callAction(
-                ...explode('@', $this->routes[$requestType][$uri])
+                ...[...explode('@', $this->routes[$requestType][$uri]), $dynamicParams]
             );
         }
-        
+
         throw new \Exception('No route defined for this URI.');
     }
 
-    protected function callAction($controller, $action)
+    protected function callAction($controller, $action, $dynamicParams)
     {
         $controller = "App\\Controllers\\{$controller}";
 
@@ -66,6 +93,7 @@ class Router
                 "{$controller} does not respond to the {$action} action"
             );
         }
-        return $controller->$action();
+
+        return $controller->$action(...$dynamicParams);
     }
 }

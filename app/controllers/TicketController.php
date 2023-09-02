@@ -17,6 +17,11 @@ class TicketController
         $importanceCases = Importance::cases();
         return view('tickets_index', compact(['tickets', 'importanceCases']));
     }
+
+    public function edit($ticket){
+        echo $ticket;
+        return ;
+    }
     
     public function store()
     {
